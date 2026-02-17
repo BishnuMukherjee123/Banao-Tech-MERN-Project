@@ -6,7 +6,7 @@ A pixel-perfect SaaS landing page and functional dashboard built with **React (V
 
 1.  **Clone the repo**
     ```bash
-    git clone <your-repo-url>
+    git clone https://github.com/BishnuMukherjee123/Banao-Tech-MERN-Project.git
     cd saas-app
     ```
 

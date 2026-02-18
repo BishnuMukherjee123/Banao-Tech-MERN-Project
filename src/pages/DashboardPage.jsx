@@ -8,7 +8,7 @@ export default function DashboardPage() {
 
   // Fetch users from API
   useEffect(() => {
-    fetch('https://jsonplaceholder.typicode.com/users')
+    fetch('https://jsonplaceholder.typicode.com/users') // ENV leter
       .then(res => res.json())
       .then(data => {
         setUsers(data);

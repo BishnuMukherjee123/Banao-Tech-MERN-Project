@@ -13,6 +13,10 @@ export default function UsersPage() {
   
   const USERS_PER_PAGE = 5;
 
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [search]);
+
   // 1. Fetch API
   useEffect(() => {
     fetch('https://jsonplaceholder.typicode.com/users')
@@ -55,16 +59,16 @@ export default function UsersPage() {
       </div>
 
       {/* Controls */}
-      <div className="bg-white p-4 rounded-xl border border-gray-200 shadow-sm flex flex-col md:flex-row gap-4 justify-between">
+      <div className="bg-white dark:bg-[#18181C] p-4 rounded-xl border border-gray-200 dark:border-gray-800 shadow-sm flex flex-col md:flex-row gap-4 justify-between transition-colors duration-200">
         <input 
           type="text" 
           placeholder="Search by name or email..." 
-          className="border border-gray-300 rounded-lg px-4 py-2 text-sm w-full md:w-64 focus:outline-none focus:ring-2 focus:ring-purple-500"
+          className="border border-gray-300 dark:border-gray-700 rounded-lg px-4 py-2 text-sm w-full md:w-64 focus:outline-none focus:ring-2 focus:ring-purple-500 bg-transparent dark:text-white dark:placeholder-gray-500"
           value={search}
           onChange={(e) => setSearch(e.target.value)}
         />
         <select 
-          className="border border-gray-300 rounded-lg px-4 py-2 text-sm bg-white"
+          className="border border-gray-300 dark:border-gray-700 rounded-lg px-4 py-2 text-sm bg-white dark:bg-[#222228] dark:text-white focus:outline-none focus:ring-2 focus:ring-purple-500"
           value={sortOrder}
           onChange={(e) => setSortOrder(e.target.value)}
         >
@@ -74,9 +78,9 @@ export default function UsersPage() {
       </div>
 
       {/* Table */}
-      <div className="bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden">
+      <div className="bg-white dark:bg-[#18181C] rounded-xl border border-gray-200 dark:border-gray-800 shadow-sm overflow-hidden transition-colors duration-200">
         <table className="w-full text-left text-sm">
-          <thead className="bg-gray-50 text-gray-500 uppercase text-xs">
+          <thead className="bg-gray-50 dark:bg-[#222228] text-gray-500 dark:text-gray-400 uppercase text-xs">
             <tr>
               <th className="px-6 py-4 font-semibold">Name</th>
               <th className="px-6 py-4 font-semibold">Email</th>
@@ -84,24 +88,24 @@ export default function UsersPage() {
               <th className="px-6 py-4 font-semibold">Website</th>
             </tr>
           </thead>
-          <tbody className="divide-y divide-gray-100">
+          <tbody className="divide-y divide-gray-100 dark:divide-gray-800">
             {paginatedUsers.map(user => (
               <tr 
                 key={user.id} 
-                className="hover:bg-gray-50 cursor-pointer transition-colors"
+                className="hover:bg-gray-50 dark:hover:bg-[#222228] cursor-pointer transition-colors"
                 onClick={() => {
                   setSelectedUser(user);
                   setModalOpen(true);
                 }}
               >
-                <td className="px-6 py-4 font-medium text-gray-900">{user.name}</td>
-                <td className="px-6 py-4 text-gray-500">{user.email}</td>
-                <td className="px-6 py-4 text-gray-500">
-                   <span className="bg-blue-50 text-blue-700 px-2 py-1 rounded text-xs border border-blue-100">
+                <td className="px-6 py-4 font-medium text-gray-900 dark:text-gray-100">{user.name}</td>
+                <td className="px-6 py-4 text-gray-500 dark:text-gray-400">{user.email}</td>
+                <td className="px-6 py-4 text-gray-500 dark:text-gray-400">
+                   <span className="bg-blue-50 dark:bg-blue-900/20 text-blue-700 dark:text-blue-300 px-2 py-1 rounded text-xs border border-blue-100 dark:border-blue-800">
                      {user.company.name}
                    </span>
                 </td>
-                <td className="px-6 py-4 text-purple-600">{user.website}</td>
+                <td className="px-6 py-4 text-purple-600 dark:text-purple-400">{user.website}</td>
               </tr>
             ))}
             {paginatedUsers.length === 0 && (
@@ -117,10 +121,10 @@ export default function UsersPage() {
             <button
               key={page}
               onClick={() => setCurrentPage(page)}
-              className={`w-8 h-8 rounded-lg text-sm font-medium ${
+              className={`w-8 h-8 rounded-lg text-sm font-medium transition-colors ${
                  currentPage === page 
                  ? 'bg-purple-600 text-white' 
-                 : 'bg-white border border-gray-300 text-gray-600 hover:bg-gray-50'
+                 : 'bg-white dark:bg-[#18181C] border border-gray-300 dark:border-gray-700 text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-[#222228]'
               }`}
             >
               {page}

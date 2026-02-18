@@ -12,10 +12,10 @@ export default function DashboardLayout() {
   };
 
   return (
-    <div className="flex h-screen bg-gray-100 text-gray-900">
+    <div className="flex h-screen bg-gray-100 dark:bg-[#0B0B0F] text-gray-900 dark:text-gray-100 transition-colors duration-200">
       {/* Sidebar */}
-      <aside className="w-64 bg-white border-r border-gray-200 flex flex-col">
-        <div className="p-6 font-bold text-xl text-purple-600 flex items-center gap-2">
+      <aside className="w-64 bg-white dark:bg-[#18181C] border-r border-gray-200 dark:border-gray-800 flex flex-col transition-colors duration-200">
+        <div className="p-6 font-bold text-xl text-purple-600 dark:text-purple-400 flex items-center gap-2">
            <div className="w-8 h-8 bg-purple-600 rounded-lg text-white flex items-center justify-center">S</div>
            Dashboard
         </div>
@@ -26,17 +26,17 @@ export default function DashboardLayout() {
           <NavItem to="/dashboard/settings" icon={Settings} label="Settings" />
         </nav>
 
-        <div className="p-4 border-t border-gray-100">
+        <div className="p-4 border-t border-gray-100 dark:border-gray-800">
            <div className="flex items-center gap-3 mb-4">
-              <div className="w-10 h-10 rounded-full bg-purple-100 flex items-center justify-center font-bold text-purple-600">
+              <div className="w-10 h-10 rounded-full bg-purple-100 dark:bg-purple-900/30 flex items-center justify-center font-bold text-purple-600 dark:text-purple-400">
                 {user?.name?.[0]}
               </div>
               <div className="text-sm">
-                <p className="font-medium">{user?.name}</p>
-                <p className="text-gray-500 text-xs truncate w-32">{user?.email}</p>
+                <p className="font-medium dark:text-gray-200">{user?.name}</p>
+                <p className="text-gray-500 dark:text-gray-400 text-xs truncate w-32">{user?.email}</p>
               </div>
            </div>
-           <button onClick={handleLogout} className="flex items-center gap-2 text-sm text-red-500 hover:bg-red-50 w-full p-2 rounded transition">
+           <button onClick={handleLogout} className="flex items-center gap-2 text-sm text-red-500 hover:bg-red-50 dark:hover:bg-red-900/20 w-full p-2 rounded transition">
              <LogOut size={16} /> Logout
            </button>
         </div>
@@ -57,7 +57,9 @@ function NavItem({ to, icon: Icon, label, end }) {
       end={end}
       className={({ isActive }) => 
         `flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-medium transition ${
-          isActive ? 'bg-purple-50 text-purple-700' : 'text-gray-600 hover:bg-gray-50'
+          isActive 
+            ? 'bg-purple-50 dark:bg-purple-900/20 text-purple-700 dark:text-purple-400' 
+            : 'text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800'
         }`
       }
     >

@@ -143,8 +143,6 @@
   body {
     @apply bg-background text-foreground;
     font-family: var(--font-sans);
-    background-color: var(--color-dark-bg); /* Keeping original dark bg for now */
-    color: white;
   }
 
   html {
